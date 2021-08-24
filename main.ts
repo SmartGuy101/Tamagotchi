@@ -7,6 +7,9 @@ controller.onGesture(ControllerGesture.TiltLeft, function () {
     MyPlayer.setVelocity(-50, 0)
     music.thump.play()
 })
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    game.reset()
+})
 controller.onGesture(ControllerGesture.TiltRight, function () {
     MyPlayer.setImage(assets.image`Player Right`)
     MyPlayer.setVelocity(50, 0)
