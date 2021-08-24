@@ -1,13 +1,15 @@
+controller.onGesture(ControllerGesture.ScreenUp, function () {
+    MyPlayer.setImage(assets.image`Player`)
+    MyPlayer.setVelocity(0, 0)
+})
 controller.onGesture(ControllerGesture.TiltLeft, function () {
     MyPlayer.setImage(assets.image`Player Left`)
     MyPlayer.setVelocity(-50, 0)
-    MyPlayer.setStayInScreen(false)
     music.thump.play()
 })
 controller.onGesture(ControllerGesture.TiltRight, function () {
     MyPlayer.setImage(assets.image`Player Right`)
     MyPlayer.setVelocity(50, 0)
-    MyPlayer.setStayInScreen(false)
     music.thump.play()
 })
 controller.onGesture(ControllerGesture.Shake, function () {
@@ -18,14 +20,20 @@ controller.onGesture(ControllerGesture.Shake, function () {
 })
 let MyPlayer: Sprite = null
 MyPlayer = sprites.create(assets.image`Player`, SpriteKind.Player)
+MyPlayer.setStayInScreen(false)
 scene.setBackgroundColor(1)
 music.setVolume(255)
 music.powerUp.play()
 forever(function () {
-    if (MyPlayer.x > scene.screenWidth() - 20) {
-        MyPlayer.x = scene.screenWidth() - 21
+    light.showAnimation(light.rainbowAnimation, 100)
+})
+forever(function () {
+    if (MyPlayer.x > scene.screenWidth() - 30) {
+        MyPlayer.x = scene.screenWidth() - 30
+        MyPlayer.setVelocity(0, 0)
     }
-    if (MyPlayer.x < 1 - scene.screenWidth()) {
-        MyPlayer.x = scene.screenWidth() + 1
+    if (MyPlayer.x < 50) {
+        MyPlayer.x = 50
+        MyPlayer.setVelocity(0, 0)
     }
 })
